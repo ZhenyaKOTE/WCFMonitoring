@@ -17,32 +17,31 @@ namespace MySiteWCF
 
         public RequestInfo GetInfo()
         {
-            Context context = new Context();
-            List<Info> inf = context._Info.ToList();
-            inf.Reverse();
-            Info info = inf[0];
+            using (Context context = new Context())
+            {
+                Info info = context._Info.ToList().Last();
 
-            Debug.WriteLine(info.TemperatureValue);
+                RequestInfo request = new RequestInfo();
+                request.HumidityValue = info.HumidityValue;
+                request.PressureValue = info.PressureValue;
+                request.TemperatureValue = info.TemperatureValue;
 
-            RequestInfo request = new RequestInfo();
-            request.HumidityValue = info.HumidityValue;
-            request.PressureValue = info.PressureValue;
-            request.TemperatureValue = info.TemperatureValue;
-
-            return request;
+                return request;
+            }
         }
 
         public void SendInfo(string Temperature, string Pressure, string Humidity)
         {
+            using (Context context = new Context())
+            {
+                Info info = new Info();
+                info.TemperatureValue = Temperature;
+                info.PressureValue = Pressure;
+                info.HumidityValue = Humidity;
 
-            Info info = new Info();
-            info.TemperatureValue = Temperature;
-            info.PressureValue = Pressure;
-            info.HumidityValue = Humidity;
-
-            Context context = new Context();
-            context._Info.Add(info);
-            context.SaveChanges();
+                context._Info.Add(info);
+                context.SaveChanges();
+            }
 
         }
     }
