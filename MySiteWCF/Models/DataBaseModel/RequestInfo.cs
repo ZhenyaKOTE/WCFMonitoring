@@ -4,17 +4,19 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace MySiteWCF
+namespace MySiteWCF.Models
 {
-
-    public class Info
+    [DataContract]
+    public class RequestInfo
     {
-        public int Id { get; set; }
 
+        [DataMember]
         public string TemperatureValue { get; set; }
-
+        [DataMember]
         public string PressureValue { get; set; }
-
+        [DataMember]
         public string HumidityValue { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
     }
 }

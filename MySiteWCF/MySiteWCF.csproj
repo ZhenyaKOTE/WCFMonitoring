@@ -81,10 +81,16 @@
     <Compile Include="Migrations\201808161431137_migr1.Designer.cs">
       <DependentUpon>201808161431137_migr1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808201311373_migr2.cs" />
+    <Compile Include="Migrations\201808201311373_migr2.Designer.cs">
+      <DependentUpon>201808201311373_migr2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Info.cs" />
-    <Compile Include="Models\Model.cs" />
-    <Compile Include="Models\RequestInfo.cs" />
+    <Compile Include="Models\DataBaseModel\RequestUserSign.cs" />
+    <Compile Include="Models\WCFModel\Info.cs" />
+    <Compile Include="Models\DataBaseModel\Model.cs" />
+    <Compile Include="Models\DataBaseModel\RequestInfo.cs" />
+    <Compile Include="Models\WCFModel\UserSign.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -106,6 +112,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808161431137_migr1.resx">
       <DependentUpon>201808161431137_migr1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201311373_migr2.resx">
+      <DependentUpon>201808201311373_migr2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

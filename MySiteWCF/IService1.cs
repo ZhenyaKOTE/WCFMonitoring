@@ -27,8 +27,22 @@ namespace MySiteWCF
                            ResponseFormat = WebMessageFormat.Json,
                            UriTemplate = "/GetInfo")]
         RequestInfo GetInfo();
-        
-        
+
+        [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped,
+                           Method = "GET",
+                           ResponseFormat = WebMessageFormat.Json,
+                           UriTemplate = "/SignUser?Log={Login}&Pass={Password}")]
+        RequestUserSign SignUser(string Login, string Password);
+
+        [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped,
+                   Method = "GET",
+                   ResponseFormat = WebMessageFormat.Json,
+                   UriTemplate = "/RegisterUser?Log={Login}&Pass={Password}")]
+        void RegisterUser(string Login, string Password);
+
+
 
 
     }

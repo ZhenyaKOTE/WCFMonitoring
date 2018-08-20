@@ -15,18 +15,17 @@ namespace MySiteWCF
         public Context()
             : base("name=Context")
         {
+           
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //or configure all DateTime Preperties globally(EF 6 and Above)
+            modelBuilder.Properties<DateTime>()
+                .Configure(c => c.HasColumnType("datetime2"));
         }
 
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
-
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<Info> _Info { get; set; }
+        public virtual DbSet<UserSign> Users { get; set; }
     }
-
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
+    
 }

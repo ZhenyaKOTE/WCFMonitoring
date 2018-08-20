@@ -30,6 +30,7 @@ namespace MySiteWCF
             }
         }
 
+
         public void SendInfo(string Temperature, string Pressure, string Humidity)
         {
             using (Context context = new Context())
@@ -44,5 +45,41 @@ namespace MySiteWCF
             }
 
         }
+
+        public RequestUserSign SignUser(string Login, string Password)
+        {
+            using (Context context = new Context())
+            {
+                UserSign DataBaseUser = context.Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
+                if (DataBaseUser != null)
+                {
+                    RequestUserSign request = new RequestUserSign();
+                    request.Login = Login;
+                    request.Password = Password;
+                    return request;
+                }
+                return null;
+            }
+        }
+
+
+        public void RegisterUser(string Login, string Password)
+        {
+            using (Context context = new Context())
+            {
+                UserSign DataBaseUser = context.Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
+                if (DataBaseUser == null)
+                {
+                    UserSign RegUser = new UserSign();
+                    RegUser.Login = Login;
+                    RegUser.Password = Password;
+
+                    context.Users.Add(RegUser);
+                    context.SaveChanges();
+                }   
+            }
+        }
+
+
     }
 }
